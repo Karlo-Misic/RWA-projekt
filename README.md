@@ -1,8 +1,8 @@
-<b>Koraci za pokretanje:</b>
-  <ol>
-    <li>Otvoriti folder u VS Codeu.</li>
-    <li>Pozicionirati se u folder <code>posluzitelj</code> (u terminal upisati <code>cd posluzitelj</code>).</li>
-    <li>Upisati u terminal <code>npm run pripremi</code>.</li>
-    <li>Upisati <code>npm run start</code>.</li>
-    <li>Server je pokrenut na portu: <strong>12222</strong> (u browser upisati <a href="http://localhost:12222/prijava">http://localhost:12222/prijava</a>).</li>
-  </ol>
+**Koraci za pokretanje:**
+
+1. Otvoriti folder u VS Codeu.  
+2. Pozicionirati se u folder `posluzitelj` (u terminal upisati `cd posluzitelj`).  
+3. Upisati u terminal: `npm run pripremi`  
+4. Zatim upisati: `npm run start`  
+5. Server je pokrenut na portu: **12222**  
+   - U browser upisati: [http://localhost:12222/prijava](http://localhost:12222/prijava)
