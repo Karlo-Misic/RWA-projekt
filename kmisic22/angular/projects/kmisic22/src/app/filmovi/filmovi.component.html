@@ -1,0 +1,27 @@
+<br>
+<div class="filmovi-container">
+    <h1>Lista Filmova</h1>
+
+    <div class="filter">
+        <label for="datumOd">Datum od:</label>
+        <input id="datumOd" type="date" [(ngModel)]="datumOd" />
+
+        <label for="datumDo">Datum do:</label>
+        <input id="datumDo" type="date" [(ngModel)]="datumDo" />
+
+        <button (click)="dohvatiFilmove()">Pretraži</button>
+    </div>
+
+    <div *ngIf="filmovi.length > 0; else nemaPodataka" class="lista-filmova">
+        <ul>
+            <li *ngFor="let film of filmovi">
+                <span>{{ film.naslov }}</span>
+            </li>
+        </ul>
+    </div>
+
+    <ng-template #nemaPodataka>
+        <p>Nema dostupnih filmova za prikaz.</p>
+    </ng-template>
+    <h1>Filmovi se prikazuju u konzoli kada se odabere datum, ne prikazuju se na web stranici.</h1>
+</div>

@@ -1,0 +1,31 @@
+<nav>#navigacija#</nav>
+<main>
+    <h1>Prikaz Osoba</h1>
+    <div class="broj-po-stranici">
+        <label for="brojPoStranici">Broj osoba po stranici:</label>
+        <select id="brojPoStranici" [(ngModel)]="brojPoStranici" (change)="promijeniBrojPoStranici($event)">
+            <option [value]="5">5</option>
+            <option [value]="10" selected>10</option>
+            <option [value]="20">20</option>
+            <option [value]="50">50</option>
+        </select>
+    </div>
+
+    <div class="osoba-kontejner">
+        <div class="osoba" *ngFor="let osoba of osobe">
+            <img [src]="osoba.profile_path ? slikeUrl + osoba.profile_path : placeholderSlika" [alt]="osoba.name"
+                (click)="prikaziDetalje(osoba.id)" />
+            <h3>{{ osoba.name }}</h3>
+            <p>Poznat/poznata po: {{ osoba.known_for_department }}</p>
+        </div>
+    </div>
+
+    <div class="paginacija">
+        <button [disabled]="trenutnaStranica === 1" (click)="promijeniStranicu(trenutnaStranica - 1)">Prethodna</button>
+        <span>Stranica {{ trenutnaStranica }}</span>
+        <button (click)="promijeniStranicu(trenutnaStranica + 1)">Sljedeća</button>
+    </div>
+</main>
+<footer>
+    &copy; 2025 Karlo Mišić. Sva prava zadržana.
+</footer>

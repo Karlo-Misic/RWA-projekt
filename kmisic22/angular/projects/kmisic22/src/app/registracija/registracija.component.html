@@ -1,0 +1,40 @@
+<nav>#navigacija#</nav>
+<header>Registracija</header>
+<main>
+    <div id="poruka" *ngIf="poruka" class="error">{{ poruka }}</div>
+    <form (ngSubmit)="onSubmit()" #registracijaForm="ngForm">
+        <label for="ime">Ime:</label>
+        <input type="text" id="ime" name="ime" required [(ngModel)]="korisnik.ime" />
+
+        <label for="prezime">Prezime:</label>
+        <input type="text" id="prezime" name="prezime" required [(ngModel)]="korisnik.prezime" />
+
+        <label for="adresa">Adresa:</label>
+        <input type="text" id="adresa" name="adresa" [(ngModel)]="korisnik.adresa" />
+
+        <label for="korime">Korisničko ime:</label>
+        <input type="text" id="korime" name="korime" required [(ngModel)]="korisnik.korime" />
+
+        <label for="lozinka">Lozinka:</label>
+        <input type="password" id="lozinka" name="lozinka" required [(ngModel)]="korisnik.lozinka" />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required [(ngModel)]="korisnik.email" />
+
+        <label for="brojMobitela">Broj mobitela:</label>
+        <input type="tel" id="brojMobitela" name="brojMobitela" pattern="[0-9]{10}" maxlength="10"
+            placeholder="Primjer: 0912345678" required [(ngModel)]="korisnik.brojMobitela" />
+
+        <label for="spol">Spol:</label>
+        <select id="spol" name="spol" [(ngModel)]="korisnik.spol">
+            <option value="muško">Muško</option>
+            <option value="žensko">Žensko</option>
+            <option value="drugo">Drugo</option>
+        </select>
+
+        <input type="submit" value="Registriraj" [disabled]="!registracijaForm.form.valid" />
+    </form>
+</main>
+<footer>
+    &copy; 2025 Karlo Mišić. Sva prava zadržana.
+</footer>

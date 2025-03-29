@@ -1,0 +1,19 @@
+<div class="upload-container">
+    <h2>Učitaj sliku</h2>
+    <input type="file" (change)="onFileSelected($event)" />
+    <button (click)="uploadImage()" [disabled]="isLoading">
+        {{ isLoading ? 'Učitavanje...' : 'Učitaj' }}
+    </button>
+</div>
+
+<div class="images-container">
+    <h2>Slike iz foldera</h2>
+    <div *ngIf="images.length > 0; else noImages">
+        <div *ngFor="let image of images" class="image-item">
+            <img [src]="image" alt="Slika" width="200" />
+        </div>
+    </div>
+    <ng-template #noImages>
+        <p>Trenutno nema učitanih slika.</p>
+    </ng-template>
+</div>

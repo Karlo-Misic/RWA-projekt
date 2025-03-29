@@ -1,0 +1,168 @@
+<nav>#navigacija#</nav>
+<main>
+    <div class="autor-info">
+        <h2>Informacije o autoru</h2>
+        <img src="/assets/kmisic22.png" alt="Autorova slika" title="Slika autora">
+        <p><strong>Ime:</strong> Karlo</p>
+        <p><strong>Prezime:</strong> Mišić</p>
+        <p><strong>FOI e-mail:</strong> <a href="mailto:kmisic22@student.foi.hr">kmisic22&#64;student.foi.hr</a></p>
+    </div>
+
+    <div class="sekcija">
+        <h2>ERA Model Servis</h2>
+        <p>Kliknite na sliku za punu veličinu ERA modela:</p>
+        <a href="/assets/ERAservis.png" target="_blank">
+            <img src="/assets/ERAservis.png" alt="ERA model u maloj veličini" class="ERA2">
+        </a>
+    </div>
+
+    <div class="sekcija">
+        <h2>ERA Model Korisnik</h2>
+        <p>Kliknite na sliku za punu veličinu ERA modela:</p>
+        <a href="/assets/ERAkorisnik.png" target="_blank">
+            <img src="/assets/ERAkorisnik.png" alt="ERA model u maloj veličini" class="ERA1">
+        </a>
+    </div>
+
+    <h2>Tablica 2 - Pregled resursa, metoda i parametara REST servisa</h2>
+    <table>
+        <tr>
+            <th>Resurs parametri</th>
+            <th>GET čitanje</th>
+            <th>POST kreiranje</th>
+            <th>PUT ažuriranje</th>
+            <th>DELETE brisanje</th>
+        </tr>
+        <tr>
+            <td>servis/korisnici</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+        </tr>
+        <tr>
+            <td>servis/korisnici/{{ '{' }}korime{{ '}' }}</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+        </tr>
+        <tr>
+            <td>servis/osoba?stranica=broj</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+        </tr>
+        <tr>
+            <td>servis/osoba/{{ '{' }}id{{ '}' }}</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+        </tr>
+        <tr>
+            <td>servis/osoba/{{ '{' }}id{{ '}' }}/film?stranica=broj</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+        </tr>
+        <tr>
+            <td>servis/film?stranica=broj&[datumOd=timestamp&datumDo=timestamp]</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+        </tr>
+        <tr>
+            <td>servis/film/{{ '{' }}id{{ '}' }}</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+            <td>Napravljeno</td>
+        </tr>
+    </table>
+    <h2>Tablica 3 - pregled funkcionalnosti web aplikacije</h2>
+    <table>
+        <tr>
+            <th>Uloga</th>
+            <th>Stranica/e</th>
+            <th>Opis</th>
+        </tr>
+        <tr>
+            <td>Gost</td>
+            <td>Početna</td>
+            <td>Napravljeno</td>
+        </tr>
+        <tr>
+            <td>Gost</td>
+            <td>Dokumentacija</td>
+            <td>Napravljeno</td>
+        </tr>
+        <tr>
+            <td>Gost</td>
+            <td>Prijava, Odjava</td>
+            <td>Napravljeno</td>
+        </tr>
+        <tr>
+            <td>Gost</td>
+            <td>Registracija</td>
+            <td>Napravljeno</td>
+        </tr>
+        <tr>
+            <td>Korisnik</td>
+            <td>Početna</td>
+            <td>Napravljeno</td>
+        </tr>
+        <tr>
+            <td>Korisnik</td>
+            <td>Osobe</td>
+            <td>Napravljeno.</td>
+        </tr>
+        <tr>
+            <td>Korisnik</td>
+            <td>Detalji</td>
+            <td>Napravljeno</td>
+        </tr>
+        <tr>
+            <td>Admin</td>
+            <td>Korisnici</td>
+            <td>Napravljeno</td>
+        </tr>
+        <tr>
+            <td>Admin</td>
+            <td>Dodavanje</td>
+            <td>Napravljeno</td>
+        </tr>
+    </table>
+
+    <h1>Zadaci</h1>
+    <ol>
+        <li>Ažurirati tablice u dokumentaciji iz prve zadaće - Napravljeno</li>
+        <li>Kreirati listu po koracima u dokumentaciji za opis druge zadaće - Napravljeno</li>
+        <li>Ugraditi dokumentaciju unutar Angular aplikacije - Napravljeno</li>
+        <li>Package.json konfiguracija za poslužitelj - Napravljeno</li>
+        <li>Poslužiti kompajliranu Angular aplikaciju kroz pozadinski servis - Napravljeno</li>
+        <li>Uklanjanje TMDB ključeva iz konfiguracije - Napravljeno</li>
+        <li>Prebaciti pozadinske funkcionalnosti u REST servis - Napravljeno sve je prebačeno ali nije napravljen ovaj
+            dio "bazičnom putanjom /servis/app/resurs."</li>
+        <li>Prebaciti klijentski dio aplikacije u Angular - Napravljeno</li>
+        <li>Fetch zahtjevi za komunikaciju - Napravljeno</li>
+        <li>Čitanje konfiguracija iz environment datoteke - Napravljeno</li>
+        <li>Dizajn stranice s Sass-om - Napravljeno</li>
+        <li>Dodavanje reCaptcha v3 - Dodano ali ne radi prijava ni reCaptcha v3</li>
+        <li>Dvorazinska autentifikacija (2FA) - Nije napravljeno</li>
+        <li>Doraditi prijavu za TOTP autentifikaciju - Nije napravljeno</li>
+        <li>Inicijalni korisnici s različitim ulogama - Nije napravljeno</li>
+        <li>Filtriranje i straničenje filmova- Napravljeno djelomično, ne prikazuje na stranici nego u konzoli
+        </li>
+        <li>Postavljanje vlastitih slika za filmove - Napravljeno</li>
+    </ol>
+    <h1>Napomene prilikom prebacivanja u angular ne radi prijava, registracija radi djelomično korisnik se sprema u
+        bazu, admin stranica ne radi implementirano je u kodu odobravanje/zabranjivanje zahtjeva za upotrebu web
+        aplikacije. </h1>
+</main>
+<footer>
+    &copy; 2025 Karlo Mišić. Sva prava zadržana.
+</footer>

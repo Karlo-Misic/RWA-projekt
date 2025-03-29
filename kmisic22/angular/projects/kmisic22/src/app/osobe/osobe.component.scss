@@ -1,0 +1,90 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f5;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+nav {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+main {
+  flex: 1;
+  padding: 30px;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.osoba-kontejner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.osoba {
+  width: 200px;
+  text-align: center;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.osoba img {
+  width: 100%;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.broj-po-stranici {
+  margin: 20px;
+  text-align: center;
+}
+
+.paginacija {
+  margin: 20px;
+}
+
+.paginacija button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: white;
+}
+
+.paginacija button:hover {
+  background-color: #06830a;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}

@@ -1,0 +1,24 @@
+<nav>#navigacija#</nav>
+<main>
+    <h1>Podaci o korisniku</h1>
+    <div *ngIf="korisnik && !korisnik.error" id="profil">
+        <p><strong>Ime:</strong> {{ korisnik.ime }}</p>
+        <p><strong>Prezime:</strong> {{ korisnik.prezime }}</p>
+        <p><strong>Korime:</strong> {{ korisnik.korime }}</p>
+        <p><strong>Email:</strong> {{ korisnik.email }}</p>
+        <p><strong>Adresa:</strong> {{ korisnik.adresa || 'N/A' }}</p>
+        <p><strong>Broj mobitela:</strong> {{ korisnik.brojMobitela || 'N/A' }}</p>
+        <p><strong>Spol:</strong> {{ korisnik.spol || 'N/A' }}</p>
+        <p><strong>Status:</strong> {{ korisnik.zahtjevZaPristup }}</p>
+    </div>
+    <div *ngIf="korisnik?.zahtjevZaPristup === 'Nema pristup'" id="zahtjevContainer">
+        <p><strong>Zahtjev za pristup:</strong> {{ korisnik.zahtjevZaPristup }}</p>
+        <button (click)="posaljiZahtjev()">Pošaljite zahtjev</button>
+    </div>
+    <div *ngIf="korisnik?.error" class="error">
+        <p>{{ korisnik.error }}</p>
+    </div>
+</main>
+<footer>
+    &copy; 2025 Karlo Mišić. Sva prava zadržana.
+</footer>

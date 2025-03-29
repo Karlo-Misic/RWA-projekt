@@ -1,0 +1,49 @@
+<nav>#navigacija#</nav>
+<main>
+    <h1>Detalji Osobe</h1>
+    <div id="detaljiOsobe">
+        <img *ngIf="detaljiOsobe?.profile_path" [src]="slikeUrl + detaljiOsobe.profile_path"
+            [alt]="detaljiOsobe?.name" />
+        <h2>{{ detaljiOsobe?.name }}</h2>
+        <p>Poznat/poznata po: {{ detaljiOsobe?.known_for_department }}</p>
+        <p>Popularnost: {{ detaljiOsobe?.popularity }}</p>
+    </div>
+
+    <h2>Galerija</h2>
+    <div class="galerija">
+        <img *ngFor="let slika of galerija" [src]="slikeUrl + slika.file_path" alt="Slika osobe" />
+    </div>
+
+    <h2>Filmovi</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Jezik</th>
+                <th>Originalni Naslov</th>
+                <th>Naslov</th>
+                <th>Popularnost</th>
+                <th>Poster</th>
+                <th>Datum Izdanja</th>
+                <th>Lik</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let film of filmovi">
+                <td>{{ film.original_language }}</td>
+                <td>{{ film.original_title }}</td>
+                <td>{{ film.title }}</td>
+                <td>{{ film.popularity }}</td>
+                <td>
+                    <img *ngIf="film.poster_path" [src]="slikeUrl + film.poster_path" alt="Poster"
+                        style="max-width: 50px;" />
+                </td>
+                <td>{{ film.release_date }}</td>
+                <td>{{ film.character }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <button *ngIf="ucitajJos" (click)="ucitajJosFilmova()">Učitaj Još</button>
+</main>
+<footer>
+    &copy; 2025 Karlo Mišić. Sva prava zadržana.
+</footer>

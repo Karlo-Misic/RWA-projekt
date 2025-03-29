@@ -1,0 +1,21 @@
+<nav>#navigacija#</nav>
+<main>
+    <div id="poruka">{{ poruka }}</div>
+    <form (submit)="prijaviSe($event)">
+        <label for="korime">Korisničko ime</label>
+        <input [(ngModel)]="korime" name="korime" type="text" placeholder="Unesite korisničko ime" />
+        <label for="lozinka">Lozinka</label>
+        <input [(ngModel)]="lozinka" name="lozinka" type="password" placeholder="Unesite lozinku" />
+        <input type="hidden" [(ngModel)]="captchaToken" name="g-recaptcha-response" />
+        <input type="submit" value="Prijavi se" (click)="onClick($event)" />
+    </form>
+    <p>Prvi korisnik ima korisničko ime <span class="highlight">“obican”</span>, ulogu <span
+            class="highlight">“registrirani korisnik”</span> i lozinku <span class="highlight">“rwa”</span>.</p>
+    <p>Drugi korisnik ima korisničko ime <span class="highlight">“admin”</span>, ulogu <span
+            class="highlight">“administrator”</span> i lozinku <span class="highlight">“rwa”</span>.</p>
+</main>
+<footer>
+    &copy; 2025 Karlo Mišić. Sva prava zadržana.
+</footer>
+
+<script src="https://www.google.com/recaptcha/enterprise.js?render=6Lfc268qAAAAAEfFooq6pSI4k_Xn8aDILGoCUkxB"></script>

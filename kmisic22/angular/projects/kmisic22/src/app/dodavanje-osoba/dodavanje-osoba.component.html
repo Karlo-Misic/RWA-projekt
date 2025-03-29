@@ -1,0 +1,40 @@
+<nav>#navigacija#</nav>
+<main>
+    <header>
+        <h1>Admin Panel - Dodavanje Osoba</h1>
+    </header>
+    <section id="pretraga">
+        <h2>Pretraživanje Osoba</h2>
+        <input type="text" [(ngModel)]="imeOsobe" placeholder="Unesite ime osobe" />
+        <button (click)="traziOsobe()" class="btn">Traži</button>
+    </section>
+    <section id="rezultati">
+        <h2>Rezultati Pretrage</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ime i Prezime</th>
+                    <th>Poznat Po</th>
+                    <th>Akcija</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let osoba of rezultatiPretrage">
+                    <td>{{ osoba.name }}</td>
+                    <td>{{ osoba.known_for_department }}</td>
+                    <td>
+                        <button class="btn btn-dodaj" (click)="dodajOsobu(osoba.id)">
+                            Dodaj
+                        </button>
+                        <button class="btn btn-obrisi" (click)="obrisiOsobu(osoba.id)">
+                            Obriši
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+<footer>
+    &copy; 2025 Karlo Mišić. Sva prava zadržana.
+</footer>
