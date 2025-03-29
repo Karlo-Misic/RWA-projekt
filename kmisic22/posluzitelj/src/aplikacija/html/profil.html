@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/navigacija.css">
+    <title>Profil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: white;
+            padding: 10px 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            margin-top: 60px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #profil,
+        #zahtjevContainer {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        #profil p,
+        #zahtjevContainer p {
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>#navigacija#</nav>
+    <main>
+        <h1>Podaci o korisniku</h1>
+        <div id="profil">
+            <p><strong>Ime:</strong> <span id="ime"></span></p>
+            <p><strong>Prezime:</strong> <span id="prezime"></span></p>
+            <p><strong>Korime:</strong> <span id="korime"></span></p>
+            <p><strong>Email:</strong> <span id="email"></span></p>
+            <p><strong>Adresa:</strong> <span id="adresa"></span></p>
+            <p><strong>Broj mobitela:</strong> <span id="brojMobitela"></span></p>
+            <p><strong>Spol:</strong> <span id="spol"></span></p>
+            <p><strong>Status:</strong> <span id="zahtjevZaPristup"></span></p>
+        </div>
+        <div id="zahtjevContainer" style="display: none;">
+            <p><strong>Zahtjev za pristup:</strong> <span id="zahtjevZaPristup"></span></p>
+            <button id="posaljiteZahtjev">Pošaljite zahtjev</button>
+        </div>
+    </main>
+    <footer>
+        &copy; 2025 Karlo Mišić. Sva prava zadržana.
+    </footer>
+    <script src="js/profil.js"></script>
+</body>
+
+</html>

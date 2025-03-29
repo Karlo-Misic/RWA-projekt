@@ -1,0 +1,48 @@
+nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #333;
+	color: white;
+	padding: 10px 10px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav a {
+	color: white;
+	text-decoration: none;
+	margin: 0 15px;
+	font-size: 16px;
+	transition: color 0.3s ease;
+}
+
+nav a:hover {
+	color: #00bcd4;
+}
+
+nav .menu {
+	display: flex;
+	flex-direction: row;
+}
+
+@media (max-width: 768px) {
+	nav .menu {
+		flex-direction: column;
+		width: 100%;
+	}
+
+	nav a {
+		margin: 10px 0;
+		text-align: center;
+	}
+}
+
+body {
+	margin: 0;
+	padding-top: 60px;
+}

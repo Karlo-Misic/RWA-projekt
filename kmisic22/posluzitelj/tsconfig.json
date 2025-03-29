@@ -1,0 +1,31 @@
+{
+	"compilerOptions": {
+		"outDir": "./build",
+		"target": "ES2023",
+		"module": "ES2022",
+		"lib": ["DOM", "ES2022"],
+		"baseUrl": ".",
+		"typeRoots": ["/usr/lib/node_modules/@types/"],
+		"paths": { "*": ["/usr/lib/node_modules/@types/*", "./types/*"] },
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"alwaysStrict": true,
+		"allowJs": false,
+		"pretty": true,
+		"skipLibCheck": true,
+		"allowUnusedLabels": false,
+		"allowUnreachableCode": false,
+		"exactOptionalPropertyTypes": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitOverride": true,
+		"noImplicitReturns": true,
+		"noImplicitAny": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noUncheckedIndexedAccess": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": false,
+		"verbatimModuleSyntax": false
+	},
+	"include": ["./src/**/*"]
+}

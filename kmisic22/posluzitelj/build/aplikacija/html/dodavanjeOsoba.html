@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/navigacija.css">
+    <title>Dodavanje Osoba</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        main {
+            flex: 1;
+            padding: 30px;
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        table {
+            width: 90%;
+            max-width: 1200px;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            background-color: #4CAF50;
+        }
+
+        .btn-dodaj {
+            background-color: green;
+            color: white;
+        }
+
+        .btn-obrisi {
+            background-color: red;
+            color: white;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        table {
+            width: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>#navigacija#</nav>
+    <main>
+        <header>
+            <h1>Admin Panel - Dodavanje Osoba</h1>
+        </header>
+        <section id="pretraga">
+            <h2>Pretraživanje Osoba</h2> <input type="text" id="imeOsobe" placeholder="Unesite ime osobe"> <button
+                id="trazi" class="btn">Traži</button>
+        </section>
+        <section id="rezultati">
+            <h2>Rezultati Pretrage</h2>
+            <table id="tabelaRezultata">
+                <thead>
+                    <tr>
+                        <th>Ime i Prezime</th>
+                        <th>Poznat Po</th>
+                        <th>Akcija</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+    </main>
+    <footer> &copy; 2025 Karlo Mišić. Sva prava zadržana. </footer>
+
+    <script>
+        const apiKljuc = "48391313a9ca7e086f3e2d28e315060e";
+        const osnovniUrl = "https://api.themoviedb.org/3";
+
+        const baseUrl =
+            window.location.hostname === "spider.foi.hr"
+                ? `http://spider.foi.hr:12203`
+                : `http://localhost:12222`;
+
+        document.getElementById("trazi").addEventListener("click", async () => {
+            const imeOsobe = document.getElementById("imeOsobe").value.trim();
+            if (!imeOsobe) {
+                alert("Molimo unesite ime osobe za pretraživanje.");
+                return;
+            }
+
+            try {
+                const odgovor = await fetch(`${osnovniUrl}/search/person?api_key=${apiKljuc}&query=${imeOsobe}`);
+                const podaci = await odgovor.json();
+
+                const tabelaRezultata = document.getElementById("tabelaRezultata").querySelector("tbody");
+                tabelaRezultata.innerHTML = "";
+                podaci.results.forEach((osoba) => {
+                    const red = document.createElement("tr");
+                    red.innerHTML = `
+                        <td>${osoba.name}</td>
+                        <td>${osoba.known_for_department}</td>
+                        <td>
+                            <button class="btn btn-dodaj" data-id="${osoba.id}">Dodaj</button>
+                            <button class="btn btn-obrisi" data-id="${osoba.id}">Obriši</button>
+                        </td>
+                    `;
+
+                    tabelaRezultata.appendChild(red);
+                });
+
+                if (podaci.results.length === 0) {
+                    tabelaRezultata.innerHTML = `<tr><td colspan="3">Nema rezultata za unijeti pojam.</td></tr>`;
+                }
+            } catch (error) {
+                console.error("Greška pri pretraživanju:", error);
+                alert("Došlo je do greške pri pretraživanju osoba.");
+            }
+        });
+
+        document.getElementById("tabelaRezultata").addEventListener("click", async (event) => {
+            const target = event.target;
+            if (target.classList.contains("btn-dodaj")) {
+                const osobaIdTMDB = target.dataset.id;
+
+                try {
+                    const proveriOsobuResponse = await fetch(`${baseUrl}/servis/osoba/${osobaIdTMDB}`);
+                    if (proveriOsobuResponse.ok) {
+                        alert("Osoba već postoji u bazi.");
+                        return;
+                    }
+
+                    const osobaOdgovor = await fetch(`${osnovniUrl}/person/${osobaIdTMDB}?api_key=${apiKljuc}`);
+                    const osobaPodaci = await osobaOdgovor.json();
+
+                    const osobaZaSlanje = {
+                        id: osobaPodaci.id,
+                        ime_i_prezime: osobaPodaci.name,
+                        poznat_po: osobaPodaci.known_for_department || "N/A",
+                        popularnost: osobaPodaci.popularity || 0,
+                        slika: osobaPodaci.profile_path
+                            ? `https://image.tmdb.org/t/p/original${osobaPodaci.profile_path}`
+                            : null,
+                        lik: osobaPodaci.also_known_as?.join(", ") || "N/A",
+                    };
+
+                    const dodajOsobuResponse = await fetch(`${baseUrl}/servis/osoba`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(osobaZaSlanje),
+                    });
+
+                    if (!dodajOsobuResponse.ok) {
+                        const greska = await dodajOsobuResponse.json();
+                        console.error("Greška pri dodavanju osobe:", greska);
+                        alert(`Greška pri dodavanju osobe: ${greska.greska}`);
+                        return;
+                    }
+
+                    const zadnjaOsobaOdgovor = await fetch(`${baseUrl}/servis/zadnja-osoba`);
+                    const zadnjaOsoba = await zadnjaOsobaOdgovor.json();
+                    const osobaIdBaza = zadnjaOsoba.id;
+
+                    const filmoviOdgovor = await fetch(`${osnovniUrl}/person/${osobaIdTMDB}/movie_credits?api_key=${apiKljuc}`);
+                    const filmoviPodaci = await filmoviOdgovor.json();
+
+                    let sviFilmoviPovezani = true;
+
+                    for (const film of filmoviPodaci.cast) {
+                        if (!film.id) {
+                            continue;
+                        }
+
+                        const filmZaSlanje = {
+                            originalni_naslov: film.original_title || "N/A",
+                            naslov: film.title || "N/A",
+                            popularnost: film.popularity || 0,
+                            slika_postera: film.poster_path
+                                ? `https://image.tmdb.org/t/p/original${film.poster_path}`
+                                : null,
+                            jezik: film.original_language || "N/A",
+                            datum_izdavanja: film.release_date || null,
+                            opis_filma: film.overview || "Nema opisa",
+                        };
+
+                        try {
+                            const dodajFilmResponse = await fetch(`${baseUrl}/servis/film`, {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify(filmZaSlanje),
+                            });
+
+                            const dodaniFilm = await dodajFilmResponse.json();
+
+                            if (!dodaniFilm.id) {
+                                continue;
+                            }
+
+                            const filmId = dodaniFilm.id;
+
+                            await fetch(`${baseUrl}/servis/osoba/${osobaIdBaza}/film`, {
+                                method: "PUT",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ filmovi: [filmId] }),
+                            });
+                        } catch (error) {
+                            console.error("Greška pri obradi filma:", error);
+                        }
+                    }
+
+                    if (sviFilmoviPovezani) {
+                        alert("Sve je uspješno dodano: osoba i filmovi su povezani.");
+                    } else {
+                        alert("Osoba je dodana, ali nisu svi filmovi povezani.");
+                    }
+                } catch (error) {
+                    console.error("Greška pri dodavanju osobe i povezivanju filmova:", error);
+                    alert("Došlo je do greške pri dodavanju osobe i povezivanju filmova.");
+                }
+            }
+
+            if (target.classList.contains("btn-obrisi")) {
+                const osobaIdTMDB = target.dataset.id;
+
+                try {
+                    const potvrda = confirm("Jeste li sigurni da želite obrisati ovu osobu i sve povezane filmove?");
+                    if (!potvrda) return;
+
+                    const brisanjeOdgovor = await fetch(`${baseUrl}/servis/osoba/${osobaIdTMDB}`, {
+                        method: "DELETE",
+                    });
+
+                    if (brisanjeOdgovor.ok) {
+                        alert(`Osoba i svi povezani filmovi su uspješno obrisani.`);
+                        target.closest("tr").remove();
+                    } else {
+                        const greska = await brisanjeOdgovor.json();
+                        console.error("Greška pri brisanju osobe:", greska);
+                        alert(`Greška pri brisanju osobe: ${greska.greska}`);
+                    }
+                } catch (error) {
+                    console.error("Greška pri brisanju osobe:", error);
+                    alert("Došlo je do greške pri brisanju osobe.");
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

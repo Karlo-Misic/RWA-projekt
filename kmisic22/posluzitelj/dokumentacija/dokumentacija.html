@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/navigacija.css">
+    <title>Dokumentacija</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .autor-info,
+        .sekcija {
+            margin-bottom: 20px;
+        }
+
+        img {
+            max-width: 150px;
+            height: auto;
+        }
+
+        img.ERA1 {
+            max-width: 350px;
+        }
+
+        img.ERA2 {
+            max-width: 750px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>#navigacija#</nav>
+    <main>
+        <div class="autor-info">
+            <h2>Informacije o autoru</h2>
+            <img src="/dokumentacija/kmisic22.png" alt="Autorova slika" title="Slika autora">
+            <p><strong>Ime:</strong> Karlo</p>
+            <p><strong>Prezime:</strong> Mišić</p>
+            <p><strong>FOI e-mail:</strong> <a href="mailto:kmisic22@student.foi.hr">kmisic22@student.foi.hr</a></p>
+        </div>
+
+        <div class="sekcija">
+            <h2>ERA Model Servis</h2>
+            <p>Kliknite na sliku za punu veličinu ERA modela:</p>
+            <a href="ERAservis.png" target="_blank">
+                <img src="/dokumentacija/ERAservis.png" alt="ERA model u maloj veličini" class="ERA2">
+            </a>
+        </div>
+
+        <div class="sekcija">
+            <h2>ERA Model Korisnik</h2>
+            <p>Kliknite na sliku za punu veličinu ERA modela:</p>
+            <a href="ERAkorisnik.png" target="_blank">
+                <img src="/dokumentacija/ERAkorisnik.png" alt="ERA model u maloj veličini" class="ERA1">
+            </a>
+        </div>
+
+        Tablica 2 - Pregled resursa, metoda i parametara REST servisa
+        <table>
+            <tr>
+                <th>Resurs parametri</th>
+                <th>GET čitanje</th>
+                <th>POST kreiranje</th>
+                <th>PUT ažuriranje</th>
+                <th>DELETE brisanje</th>
+            </tr>
+            <tr>
+                <td>servis/korisnici</td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+            </tr>
+            <tr>
+                <td>servis/korisnici
+                    /{korime}</td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+            </tr>
+            <tr>
+                <td>servis/osoba?stranica
+                    =broj</td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+            </tr>
+            <tr>
+                <td>servis/osoba/{id} </td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+            </tr>
+            <tr>
+                <td>servis/osoba/{id}/film
+                    ?stranica=broj</td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+            </tr>
+            <tr>
+                <td>servis/film?stranica
+                    =broj&[datumOd=ti
+                    mestamp&datumDo=
+                    timestamp]</td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+            </tr>
+            <tr>
+                <td>servis/film/{id} </td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+                <td>Napravljeno</td>
+            </tr>
+
+        </table>
+        <br>
+        Tablica 3 - pregled funkcionalnosti web aplikacije
+        <table>
+
+            <tr>
+                <th>Uloga</th>
+                <th>Stranica/e</th>
+                <th>Opis</th>
+            </tr>
+            <tr>
+                <td>Gost</td>
+                <td>Početna</td>
+                <td>Napravljeno</td>
+            </tr>
+            <tr>
+                <td>Gost</td>
+                <td>Dokumentacija</td>
+                <td>Napravljeno</td>
+            </tr>
+            <tr>
+                <td>Gost</td>
+                <td>Prijava, Odjava</td>
+                <td>Napravljeno</td>
+            </tr>
+            <tr>
+                <td>Gost</td>
+                <td>Registracija</td>
+                <td>Napravljeno</td>
+            </tr>
+            <tr>
+                <td>Korisnik</td>
+                <td>Pocetna</td>
+                <td>Napravljeno</td>
+            </tr>
+            <tr>
+                <td>Korisnik</td>
+                <td>Osobe</td>
+                <td>Napravljeno.</td>
+            </tr>
+            <tr>
+                <td>Korisnik</td>
+                <td>Detalji</td>
+                <td>Napravljeno</td>
+            </tr>
+            <tr>
+                <td>Admin</td>
+                <td>Korisnici</td>
+                <td>Napravljeno</td>
+            </tr>
+            <tr>
+                <td>Admin</td>
+                <td>Dodavanje</td>
+                <td>Napravljeno</td>
+            </tr>
+        </table>
+        <h1>Zadaci</h1>
+        <ol>
+            <li>Ažurirati tablice u dokumentaciji iz prve zadaće - Napravljeno</li>
+            <li>Kreirati listu po koracima u dokumentaciji za opis druge zadaće - Napravljeno</li>
+            <li>Ugraditi dokumentaciju unutar Angular aplikacije</li>
+            <li>Package.json konfiguracija za poslužitelj</li>
+            <li>Poslužiti kompajliranu Angular aplikaciju kroz pozadinski servis</li>
+            <li>Uklanjanje TMDB ključeva iz konfiguracije</li>
+            <li>Prebaciti pozadinske funkcionalnosti u REST servis</li>
+            <li>Prebaciti klijentski dio aplikacije u Angular</li>
+            <li>Fetch zahtjevi za komunikaciju</li>
+            <li>Čitanje konfiguracija iz environment datoteke</li>
+            <li>Dizajn stranice s Sass-om</li>
+            <li>Dodavanje reCaptcha v3</li>
+            <li>Dvorazinska autentifikacija (2FA)</li>
+            <li>Doraditi prijavu za TOTP autentifikaciju</li>
+            <li>Inicijalni korisnici s različitim ulogama</li>
+            <li>Filtriranje i straničenje filmova</li>
+            <li>Postavljanje vlastitih slika za filmove</li>
+        </ol>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const korime = getCookie("korime");
+
+            const baseUrl =
+                window.location.hostname === "spider.foi.hr"
+                    ? `http://spider.foi.hr:12203`
+                    : `http://localhost:12222`;
+
+            const navigacija = document.querySelector("nav");
+
+            if (korime) {
+                fetch(`${baseUrl}/servis/korisnici/${korime}`)
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error(`Greška pri dohvaćanju podataka: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        if (data) {
+                            if (data.zahtjevZaPristup === "Nema pristup") {
+                                const links = navigacija.querySelectorAll("a");
+                                links.forEach((link) => {
+                                    if (
+                                        !link.href.includes("dokumentacija") &&
+                                        !link.href.includes("profil") &&
+                                        !link.href.includes("odjava")
+                                    ) {
+                                        link.style.display = "none";
+                                    } else {
+                                        link.style.display = "inline-block";
+                                    }
+                                });
+                            } else if (data.zahtjevZaPristup === "pending") {
+                                const links = navigacija.querySelectorAll("a");
+                                links.forEach((link) => {
+                                    if (
+                                        !link.href.includes("dokumentacija") &&
+                                        !link.href.includes("profil") &&
+                                        !link.href.includes("odjava")
+                                    ) {
+                                        link.style.display = "none";
+                                    } else {
+                                        link.style.display = "inline-block";
+                                    }
+                                });
+                            } else if (data.zahtjevZaPristup === "Ima pristup") {
+                                navigacija.style.display = "flex";
+                            }
+                        } else {
+                            console.error("Podaci o korisniku nisu dostupni.");
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Greška pri dohvaćanju podataka:", error);
+                    });
+            } else {
+                const links = navigacija.querySelectorAll("a");
+                links.forEach((link) => {
+                    link.style.display = "inline-block";
+                });
+            }
+
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(";").shift();
+            }
+        });
+    </script>
+</body>
+
+</html>

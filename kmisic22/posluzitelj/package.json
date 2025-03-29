@@ -1,0 +1,34 @@
+{
+	"name": "vjezba_05_dz1",
+	"version": "1.0.0",
+	"description": "",
+	"main": "servis.js",
+	"type": "module",
+	"scripts": {
+		"pripremi": "npm link --save --package-lock false express  express-session cookie-parser better-sqlite3 cors jsonwebtoken nodemailer base32-encoding totp-generator",
+		"copy-files": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.jpg 'src/**/*.js' build/",
+		"clean": "rm -r build/*",
+		"compile": "tsc --watch false",
+		"servis": "node build/servis/servis.js podaci/rwa_kmisic22_conf.csv",
+		"aplikacija": "node build/aplikacija/aplikacija.js podaci/rwa_kmisic22_conf.csv",
+		"start": "npm run clean && npm run compile && npm run copy-files && npm run servis",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Karlo Mišić",
+	"license": "ISC",
+	"dependencies": {
+		"axios": "^1.7.9",
+		"base32-encoding": "file:../../../../../usr/lib/node_modules/base32-encoding",
+		"better-sqlite3": "file:../../../../../usr/lib/node_modules/better-sqlite3",
+		"cookie-parser": "file:../../../../../usr/lib/node_modules/cookie-parser",
+		"cors": "file:../../../../../usr/lib/node_modules/cors",
+		"express": "file:../../../../../usr/lib/node_modules/express",
+		"express-session": "file:../../../../../usr/lib/node_modules/express-session",
+		"jsonwebtoken": "file:../../../../../usr/lib/node_modules/jsonwebtoken",
+		"nodemailer": "file:../../../../../usr/lib/node_modules/nodemailer",
+		"totp-generator": "file:../../../../../usr/lib/node_modules/totp-generator"
+	},
+	"devDependencies": {
+		"@types/better-sqlite3": "^7.6.12"
+	}
+}

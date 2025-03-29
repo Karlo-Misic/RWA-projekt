@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registracija</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/navigacija.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        header {
+            margin-top: 50px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+        }
+
+        main {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        #poruka {
+            margin-bottom: 20px;
+            color: red;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            text-align: left;
+        }
+
+        input,
+        select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>#navigacija#</nav>
+    <header>Registracija</header>
+    <main>
+        <div id="poruka">#poruka#</div>
+        <form action="/registracija" method="POST">
+
+            <label for="ime">Ime:</label>
+            <input type="text" name="ime" id="ime" required />
+
+            <label for="prezime">Prezime:</label>
+            <input type="text" name="prezime" id="prezime" required />
+
+            <label for="adresa">Adresa:</label>
+            <input type="text" name="adresa" id="adresa" />
+
+            <label for="korime">Korisničko ime:</label>
+            <input type="text" name="korime" id="korime" required />
+
+            <label for="lozinka">Lozinka:</label>
+            <input type="password" name="lozinka" id="lozinka" required />
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required />
+
+            <label for="brojMobitela">Broj mobitela:</label>
+            <input type="tel" name="brojMobitela" id="brojMobitela" pattern="[0-9]{10}" maxlength="10"
+                placeholder="Primjer: 0912345678" required />
+
+            <label for="spol">Spol:</label>
+            <select name="spol" id="spol">
+                <option value="muško">Muško</option>
+                <option value="žensko">Žensko</option>
+                <option value="drugo">Drugo</option>
+            </select>
+
+            <input type="submit" value="Registriraj" />
+        </form>
+    </main>
+    <footer>
+        &copy; 2025 Karlo Mišić. Sva prava zadržana.
+    </footer>
+</body>
+
+</html>

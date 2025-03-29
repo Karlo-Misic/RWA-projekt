@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/navigacija.css">
+    <title>Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        main {
+            flex: 1;
+            padding: 30px;
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .pending {
+            background-color: #ffeeba;
+        }
+
+        .admin {
+            color: red;
+        }
+
+        .status-approved {
+            color: green;
+            font-weight: bold;
+        }
+
+        .status-pending {
+            color: orange;
+            font-weight: bold;
+        }
+
+        .status-rejected {
+            color: red;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            max-width: 1000px;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .odobri {
+            background-color: green;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .odobri:hover {
+            background-color: #008000;
+        }
+
+        .odbij {
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .odbij:hover {
+            background-color: #ff6600;
+        }
+
+        .obrisi {
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .obrisi:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>#navigacija#</nav>
+    <main>
+        <header>
+            <h1>Admin Panel</h1>
+        </header>
+        <section id="zahtjevi">
+            <h2>Zahtjevi za pristup</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Korisničko ime</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Akcija</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaZahtjeva"></tbody>
+            </table>
+        </section>
+
+        <section id="listaKorisnika">
+            <h2>Lista svih korisnika</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Korisničko ime</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Akcija</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaKorisnika"></tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        &copy; 2025 Karlo Mišić. Sva prava zadržana.
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const tabelaZahtjeva = document.getElementById("tabelaZahtjeva");
+            const tabelaKorisnika = document.getElementById("tabelaKorisnika");
+
+            const baseUrl =
+                window.location.hostname === "spider.foi.hr"
+                    ? `http://spider.foi.hr:12203`
+                    : `http://localhost:12222`;
+
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(";").shift();
+            }
+
+            const trenutnaUloga = getCookie("uloga");
+            const trenutniKorisnik = getCookie("korime");
+
+            try {
+                const response = await fetch(`${baseUrl}/servis/dohvatiKorisnike`);
+
+                if (!response.ok) {
+                    console.error(`Greška: ${response.status} ${response.statusText}`);
+                    return;
+                }
+
+                const korisnici = await response.json();
+
+                if (Array.isArray(korisnici)) {
+                    korisnici.forEach((korisnik) => {
+                        if (korisnik.korime === trenutniKorisnik) return;
+
+                        const red = document.createElement("tr");
+
+                        let statusClass = "";
+                        if (korisnik.zahtjevZaPristup === "approved") {
+                            statusClass = "status-approved";
+                        } else if (korisnik.zahtjevZaPristup === "pending") {
+                            statusClass = "status-pending";
+                        } else if (korisnik.zahtjevZaPristup === "zahtjevNijePoslan") {
+                            statusClass = "status-rejected";
+                        }
+
+                        red.innerHTML = `
+                                <td>${korisnik.korime}</td>
+                                <td>${korisnik.email}</td>
+                                <td class="${statusClass}">${korisnik.zahtjevZaPristup}</td>
+                                <td>
+                                    ${korisnik.zahtjevZaPristup === "pending"
+                                ? `<button class="odobri" data-korime="${korisnik.korime}">Daj pristup</button>
+                                           <button class="odbij" data-korime="${korisnik.korime}">Zabrani pristup</button>`
+                                : `<button class="obrisi" data-korime="${korisnik.korime}">Obriši</button>`
+                            }
+                                </td>
+                            `;
+
+                        if (korisnik.zahtjevZaPristup === "pending") {
+                            tabelaZahtjeva.appendChild(red);
+                        } else {
+                            tabelaKorisnika.appendChild(red);
+                        }
+                    });
+                } else {
+                    console.error("Odgovor nije u očekivanom formatu:", korisnici);
+                }
+            } catch (error) {
+                console.error("Greška pri dohvatu korisnika:", error);
+            }
+
+            document.body.addEventListener("click", async (event) => {
+                const target = event.target;
+
+                if (target.classList.contains("odobri") || target.classList.contains("odbij") || target.classList.contains("obrisi")) {
+                    const korime = target.dataset.korime;
+
+                    if (korime === trenutniKorisnik) {
+                        alert("Ne možete obrisati svoj vlastiti račun.");
+                        return;
+                    }
+
+                    if (target.classList.contains("odobri")) {
+                        try {
+                            const response = await fetch(`${baseUrl}/servis/korisnici/${korime}/status`, {
+                                method: "PUT",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({ status: "approved" }),
+                            });
+
+                            if (response.ok) {
+                                alert(`Pristup korisniku ${korime} je odobren.`);
+                                target.closest("tr").remove();
+                            } else {
+                                alert("Greška pri odobravanju pristupa.");
+                            }
+                        } catch (error) {
+                            console.error("Greška pri odobravanju pristupa:", error);
+                        }
+                    } else if (target.classList.contains("odbij")) {
+                        try {
+                            const response = await fetch(`${baseUrl}/servis/korisnici/${korime}/status`, {
+                                method: "PUT",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({ status: "zahtjevNijePoslan" }),
+                            });
+
+                            if (response.ok) {
+                                alert(`Pristup korisniku ${korime} je zabranjen.`);
+                                target.closest("tr").remove();
+                            } else {
+                                alert("Greška pri zabrani pristupa.");
+                            }
+                        } catch (error) {
+                            console.error("Greška pri zabrani pristupa:", error);
+                        }
+                    } else if (target.classList.contains("obrisi")) {
+                        try {
+                            const response = await fetch(`${baseUrl}/servis/korisnici/${korime}/status`, {
+                                method: "PUT",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({ status: "" }),
+                            });
+
+                            if (response.ok) {
+                                alert(`Korisniku ${korime} je postavljen prazan zahtjev za pristup.`);
+                                target.closest("tr").remove();
+                            } else {
+                                alert("Greška pri brisanju korisnika.");
+                            }
+                        } catch (error) {
+                            console.error("Greška pri brisanju korisnika:", error);
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

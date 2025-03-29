@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/navigacija.css">
+    <title>Detalji Osobe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        main {
+            flex: 1;
+            padding: 30px;
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #detaljiOsobe {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        #detaljiOsobe img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .galerija {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .galerija img {
+            max-width: 150px;
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 90%;
+            max-width: 1000px;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        td:hover .tooltip {
+            visibility: visible;
+        }
+
+        .tooltip {
+            visibility: hidden;
+            position: absolute;
+            background-color: #333;
+            color: #fff;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 100;
+            width: 300px;
+        }
+
+        .ucitaj-jos {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .ucitaj-jos:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>#navigacija#</nav>
+    <main>
+        <h1>Detalji Osobe</h1>
+        <div id="detaljiOsobe"></div>
+        <h2>Galerija</h2>
+        <div class="galerija" id="galerija"></div>
+        <h2>Filmovi</h2>
+        <table id="filmovi">
+            <thead>
+                <tr>
+                    <th>Jezik</th>
+                    <th>Originalni Naslov</th>
+                    <th>Naslov</th>
+                    <th>Popularnost</th>
+                    <th>Poster</th>
+                    <th>Datum Izdanja</th>
+                    <th>Lik</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button class="ucitaj-jos" id="ucitajJos">Učitaj Još</button>
+    </main>
+    <footer>
+        &copy; 2025 Karlo Mišić. Sva prava zadržana.
+    </footer>
+    <script src="js/detalji.js"></script>
+</body>
+
+</html>
